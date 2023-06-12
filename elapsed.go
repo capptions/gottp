@@ -8,7 +8,9 @@ import (
 
 func timeTrack(start time.Time, req *http.Request) {
 	elapsed := time.Since(start)
-	log.Printf("[%s] %s %s %s\n", req.Method, req.URL, req.RemoteAddr, elapsed)
+	if req.URL != "/healthz" {
+		log.Printf("[%s] %s %s %s\n", req.Method, req.URL, req.RemoteAddr, elapsed)
+	}
 }
 
 func pipeTimeTrack(start time.Time, req *http.Request, pipeUrls string) {
