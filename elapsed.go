@@ -8,7 +8,7 @@ import (
 
 func timeTrack(start time.Time, req *http.Request) {
 	elapsed := time.Since(start)
-	if req.URL != "/healthz" {
+	if req.URL.String() != "/healthz" {
 		log.Printf("[%s] %s %s %s\n", req.Method, req.URL, req.RemoteAddr, elapsed)
 	}
 }
